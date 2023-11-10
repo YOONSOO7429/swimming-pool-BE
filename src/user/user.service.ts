@@ -43,4 +43,15 @@ export class UserService {
       throw new Error('UserService/validateUser');
     }
   }
+
+  /* 토큰 검사를 위한 조회 */
+  async findUserByPk(userId: number): Promise<any> {
+    try {
+      const user = await this.userRepository.findUserByPk(userId);
+      return user;
+    } catch (e) {
+      console.error(e);
+      throw new Error('UserService/findUserByPk');
+    }
+  }
 }

@@ -51,7 +51,7 @@ export class UserController {
       if (user.password === encryptedPassword) {
         const userId = user.userId;
         const token = await this.userService.getToken(userId);
-        res.cookie('authorization', token);
+        res.cookie('authorization', `Bearer ${token}`);
         return res.status(HttpStatus.OK).json({ message: 'signIn 성공' });
       }
     } catch (e) {
