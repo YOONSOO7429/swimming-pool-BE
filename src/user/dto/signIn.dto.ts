@@ -10,4 +10,9 @@ export class SignInDto {
   @IsNotEmpty()
   @IsString()
   readonly password: string;
+
+  // account
+  @IsNotEmpty()
+  @IsString()
+  readonly account: string;
 }

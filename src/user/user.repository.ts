@@ -13,11 +13,13 @@ export class UserRepository {
   async signUp(
     identification: string,
     encryptedPassword: string,
+    account: string,
   ): Promise<any> {
     try {
       const newUser = new User();
       newUser.identification = identification;
       newUser.password = encryptedPassword;
+      newUser.account = account;
       await this.userRepository.save(newUser);
       return newUser;
     } catch (e) {

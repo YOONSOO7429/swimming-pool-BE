@@ -12,14 +12,14 @@ export class UserController {
   @Post('signUp')
   async signUp(@Body() signUpDto: SignUpDto, @Res() res: any): Promise<any> {
     try {
-      const { identification, password } = signUpDto;
+      const { identification, password, account } = signUpDto;
       const exUser = await this.userService.findOneUser(identification);
       if (exUser) {
         return res
           .status(HttpStatus.NOT_ACCEPTABLE)
           .json({ message: '이미 가입이 완료된 정보입니다.' });
       }
-      await this.userService.signUp(identification, password);
+      await this.userService.signUp(identification, password, account);
 
       return res.status(HttpStatus.OK).json({ message: '회원가입 성공' });
     } catch (e) {
@@ -32,7 +32,7 @@ export class UserController {
   @Post('signIn')
   async signIn(@Body() signInDto: SignInDto, @Res() res: any): Promise<any> {
     try {
-      const { identification, password } = signInDto;
+      const { identification, password, account } = signInDto;
       const encryptedPassword = await bcrypt.hash(password, 11);
       const user = await this.userService.findOneUser(identification);
       // user 정보 확인
@@ -52,7 +52,9 @@ export class UserController {
         const userId = user.userId;
         const token = await this.userService.getToken(userId);
         res.cookie('authorization', `Bearer ${token}`);
-        return res.status(HttpStatus.OK).json({ message: 'signIn 성공' });
+        return res
+          .status(HttpStatus.OK)
+          .json({ message: `환영합니다!! ${account}님` });
       }
     } catch (e) {
       console.error(e);

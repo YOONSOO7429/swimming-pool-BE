@@ -8,12 +8,17 @@ export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
   /* 회원 가입 */
-  async signUp(signInId: string, password: string): Promise<any> {
+  async signUp(
+    identification: string,
+    password: string,
+    account: string,
+  ): Promise<any> {
     try {
       const encryptedPassword = await bcrypt.hash(password, 11);
       const newUser = await this.userRepository.signUp(
-        signInId,
+        identification,
         encryptedPassword,
+        account,
       );
       return newUser;
     } catch (e) {
