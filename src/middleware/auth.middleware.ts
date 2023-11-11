@@ -38,9 +38,10 @@ export class AuthMiddleWare implements NestMiddleware<Request, Response> {
         res.locals.user = user;
         next();
       } else {
+        res.clearCookie('authorization');
         return res
           .status(HttpStatus.NOT_FOUND)
-          .json({ message: '회원 정보가 없습니다.' });
+          .json({ message: '회원 정보에 문제가 있습니다. 확인이 필요합니다.' });
       }
     } catch (e) {
       res.clearCookie('authorization');

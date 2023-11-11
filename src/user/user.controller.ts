@@ -12,14 +12,14 @@ export class UserController {
   @Post('signUp')
   async signUp(@Body() signUpDto: SignUpDto, @Res() res: any): Promise<any> {
     try {
-      const { identification, password, account } = signUpDto;
+      const identification = signUpDto.identification;
       const exUser = await this.userService.findOneUser(identification);
       if (exUser) {
         return res
           .status(HttpStatus.NOT_ACCEPTABLE)
           .json({ message: '이미 가입이 완료된 정보입니다.' });
       }
-      await this.userService.signUp(identification, password, account);
+      await this.userService.signUp(signUpDto);
 
       return res.status(HttpStatus.OK).json({ message: '회원가입 성공' });
     } catch (e) {

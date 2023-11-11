@@ -1,40 +1,47 @@
-import { Lecture } from 'src/Lecture/entities/Lecture.entity';
 import { Member } from 'src/member/entities/member.entity';
+import { User } from 'src/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  JoinColumn,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('user')
-export class User {
+@Entity('lecture')
+export class Lecture {
   @PrimaryGeneratedColumn('increment', { type: 'bigint' })
+  lectureId: number;
+
+  @ManyToOne(() => User, (user) => user.lecture)
+  @JoinColumn({ name: 'userId' })
   userId: number;
 
   @Column({ type: 'varchar' })
-  identification: string;
+  lectureName: string;
 
   @Column({ type: 'varchar' })
-  password: string;
+  lectureTime: string;
 
   @Column({ type: 'varchar' })
-  name: string;
+  lectureDay: string;
 
-  @Column({ type: 'varchar' })
-  account: string;
+  @Column({ type: 'int' })
+  lectureMaxMember: number;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
+  @UpdateDateColumn({ type: 'timestamp' })
+  updatedAt: Date;
+
   @DeleteDateColumn({ type: 'datetime', nullable: true })
   deletedAt: Date;
 
-  @OneToMany(() => Member, (member) => member.userId)
+  @OneToMany(() => Member, (member) => member.lectureId)
   member: Member[];
-
-  @OneToMany(() => Lecture, (lecture) => lecture.userId)
-  lecture: Lecture[];
 }

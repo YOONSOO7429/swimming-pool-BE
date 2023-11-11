@@ -2,18 +2,16 @@ import { Injectable } from '@nestjs/common';
 import { UserRepository } from './user.repository';
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
+import { SignUpDto } from './dto/signUp.dto';
 
 @Injectable()
 export class UserService {
   constructor(private readonly userRepository: UserRepository) {}
 
   /* 회원 가입 */
-  async signUp(
-    identification: string,
-    password: string,
-    account: string,
-  ): Promise<any> {
+  async signUp(signUpDto: SignUpDto): Promise<any> {
     try {
+      const { identification, password, account } = signUpDto;
       const encryptedPassword = await bcrypt.hash(password, 11);
       const newUser = await this.userRepository.signUp(
         identification,

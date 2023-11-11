@@ -1,4 +1,9 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { JwtService } from '@nestjs/jwt';
@@ -7,6 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthMiddleWare } from './middleware/auth.middleware';
 import { MemberModule } from './member/member.module';
+import { LectureModule } from './Lecture/Lecture.module';
 
 @Module({
   imports: [
@@ -28,6 +34,7 @@ import { MemberModule } from './member/member.module';
     }),
     UserModule,
     MemberModule,
+    LectureModule,
   ],
   controllers: [AppController],
   providers: [AppService, JwtService],
@@ -35,6 +42,8 @@ import { MemberModule } from './member/member.module';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     // auth 미들웨어
-    consumer.apply(AuthMiddleWare).forRoutes();
+    consumer
+      .apply(AuthMiddleWare)
+      .forRoutes({ path: 'lecture/create', method: RequestMethod.POST });
   }
 }

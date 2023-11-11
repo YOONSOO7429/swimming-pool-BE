@@ -1,3 +1,4 @@
+import { Lecture } from 'src/Lecture/entities/Lecture.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
@@ -13,6 +14,10 @@ export class Member {
   memberId: number;
 
   @ManyToOne(() => User, (user) => user.member)
-  @JoinColumn({ name: 'name' })
-  user: User[];
+  @JoinColumn({ name: 'userId' })
+  userId: number;
+
+  @ManyToOne(() => Lecture, (lecture) => lecture.member)
+  @JoinColumn({ name: 'lectureId' })
+  lectureId: number;
 }
