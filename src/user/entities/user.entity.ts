@@ -1,8 +1,10 @@
+import { Member } from 'src/member/entities/member.entity';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -18,6 +20,9 @@ export class User {
   password: string;
 
   @Column({ type: 'varchar' })
+  name: string;
+
+  @Column({ type: 'varchar' })
   account: string;
 
   @CreateDateColumn({ type: 'timestamp' })
@@ -25,4 +30,7 @@ export class User {
 
   @DeleteDateColumn({ type: 'datetime', nullable: true })
   deletedAt: Date;
+
+  @OneToMany(() => Member, (member) => member.user)
+  member: Member[];
 }

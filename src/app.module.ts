@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthMiddleWare } from './middleware/auth.middleware';
+import { MemberModule } from './member/member.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { AuthMiddleWare } from './middleware/auth.middleware';
       synchronize: false,
     }),
     UserModule,
+    MemberModule,
   ],
   controllers: [AppController],
   providers: [AppService, JwtService],
