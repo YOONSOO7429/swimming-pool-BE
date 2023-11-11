@@ -57,4 +57,15 @@ export class UserService {
       throw new Error('UserService/findUserByPk');
     }
   }
+
+  /* 계정 삭제 */
+  async deleteUser(userId: number): Promise<any> {
+    try {
+      const deleteUser = await this.userRepository.deleteUser(userId);
+      return deleteUser;
+    } catch (e) {
+      console.error(e);
+      throw new Error('UserService/deleteUser');
+    }
+  }
 }

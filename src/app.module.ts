@@ -42,8 +42,11 @@ import { LectureModule } from './Lecture/Lecture.module';
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     // auth 미들웨어
-    consumer
-      .apply(AuthMiddleWare)
-      .forRoutes({ path: 'lecture/create', method: RequestMethod.POST });
+    consumer.apply(AuthMiddleWare).forRoutes(
+      // user
+      { path: 'user/deleteUser', method: RequestMethod.DELETE },
+      // lecture
+      { path: 'lecture/create', method: RequestMethod.POST },
+    );
   }
 }

@@ -1,4 +1,11 @@
-import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpStatus,
+  Post,
+  Res,
+  Delete,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { SignUpDto } from './dto/signUp.dto';
 import { SignInDto } from './dto/signIn.dto';
@@ -59,6 +66,22 @@ export class UserController {
     } catch (e) {
       console.error(e);
       throw new Error('UserController/signIn');
+    }
+  }
+
+  /* 회원 정보 삭제 */
+  @Delete('deleteUser')
+  async deleteUser(@Res() res: any): Promise<any> {
+    try {
+      const user = res.locals.user;
+      const userId = user.userId;
+      if (user) {
+        await this.userService.deleteUser(userId);
+        return res.status(HttpStatus.OK).json({ message: '계정 삭제 완료' });
+      }
+    } catch (e) {
+      console.error(e);
+      throw new Error('UserController/deleteUser');
     }
   }
 }
