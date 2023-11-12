@@ -1,6 +1,15 @@
-import { Controller, Post, Body, Res, HttpStatus } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Res,
+  HttpStatus,
+  Put,
+  Param,
+} from '@nestjs/common';
 import { LectureService } from './Lecture.service';
 import { CreateLectureDto } from './dto/createLecture.dto';
+import { EditLectureDto } from './dto/editLecture.dto';
 
 @Controller('lecture')
 export class LectureController {
@@ -31,6 +40,36 @@ export class LectureController {
     } catch (e) {
       console.error(e);
       throw new Error('LectureController/createLecture');
+    }
+  }
+
+  /* 강좌 수정 */
+  @Put(':lectureId/edit')
+  async editLecture(
+    @Body() editLectureDto: EditLectureDto,
+    @Param('lectureId') lectureId: number,
+    @Res() res: any,
+  ): Promise<any> {
+    try {
+      const user = res.locals.user;
+      const userId = user.userId;
+
+      // 강좌 조회
+      const lecture = await this.lectureService.findOneLecture(lectureId);
+      if (lecture.userId !== userId) {
+        return res
+          .status(HttpStatus.UNAUTHORIZED)
+          .json({ message: '수정 권한이 없습니다.' });
+      } else {
+        const editLecture = await this.lectureService.editLecture(
+          editLectureDto,
+          lectureId,
+        );
+        return res.status(HttpStatus.OK).json({ message: '강좌 수정 완료' });
+      }
+    } catch (e) {
+      console.error(e);
+      throw new Error('LectureController/editLecture');
     }
   }
 }
