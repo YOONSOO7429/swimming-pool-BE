@@ -24,6 +24,17 @@ export class LectureService {
     }
   }
 
+  /* 모든 강좌 조회 */
+  async findAllLecture(): Promise<any> {
+    try {
+      const lecture = await this.lectureRepository.findAllLecture();
+      return lecture;
+    } catch (e) {
+      console.error(e);
+      throw new Error('LectureRepository/findAllLecture');
+    }
+  }
+
   /* 강좌 한개 조회 */
   async findOneLecture(lectureId: number): Promise<any> {
     try {
@@ -49,6 +60,18 @@ export class LectureService {
     } catch (e) {
       console.error(e);
       throw new Error('LectureService/editLecture');
+    }
+  }
+
+  /* 강좌 삭제 */
+  async deleteLecture(lectureId: number): Promise<any> {
+    try {
+      const deleteLecture =
+        await this.lectureRepository.deleteLecture(lectureId);
+      return deleteLecture;
+    } catch (e) {
+      console.error(e);
+      throw new Error('LectureService/deleteLecture');
     }
   }
 }

@@ -47,7 +47,9 @@ export class AppModule implements NestModule {
       { path: 'user/deleteUser', method: RequestMethod.DELETE },
       // lecture
       { path: 'lecture/create', method: RequestMethod.POST },
-      { path: 'lecture/edit', method: RequestMethod.PUT },
+      { path: 'lecture/lectureList', method: RequestMethod.GET },
+      { path: 'lecture/:lectureId/detail', method: RequestMethod.GET },
+      { path: 'lecture/:lectureId/edit', method: RequestMethod.PUT },
     );
   }
 }

@@ -30,7 +30,29 @@ export class LectureRepository {
       return lecture;
     } catch (e) {
       console.error(e);
-      throw new Error('LectureService/createLecture');
+      throw new Error('LectureRepository/createLecture');
+    }
+  }
+
+  /* 모든 강좌 조회 */
+  async findAllLecture(): Promise<any> {
+    try {
+      const lecture = await this.lectureRepository
+        .createQueryBuilder('lecture')
+        .select([
+          'lectureId',
+          'userId',
+          'lectureName',
+          'lectureTime',
+          'lectureDay',
+          'lectureMaxMember',
+        ])
+        .andWhere('deletedAt IS NULL')
+        .getRawMany();
+      return lecture;
+    } catch (e) {
+      console.error(e);
+      throw new Error('LectureRepository/findOneLectures');
     }
   }
 
@@ -39,13 +61,21 @@ export class LectureRepository {
     try {
       const lecture = await this.lectureRepository
         .createQueryBuilder('lecture')
-        .select(['lectureId', 'userId'])
+        .select([
+          'lectureId',
+          'userId',
+          'lectureName',
+          'lectureTime',
+          'lectureDay',
+          'lectureMaxMember',
+        ])
         .where('lectureId = :lectureId', { lectureId })
+        .andWhere('deletedAt IS NULL')
         .getRawOne();
       return lecture;
     } catch (e) {
       console.error(e);
-      throw new Error('LectureService/findOneLectures');
+      throw new Error('LectureRepository/findOneLectures');
     }
   }
 
@@ -66,7 +96,28 @@ export class LectureRepository {
       return editLecture;
     } catch (e) {
       console.error(e);
-      throw new Error('LectureService/editLecture');
+      throw new Error('LectureRepository/editLecture');
+    }
+  }
+
+  /* 강좌 삭제 */
+  async deleteLecture(lectureId: number): Promise<any> {
+    try {
+      const koreaTimezoneOffset = 9 * 60;
+      const currentDate = new Date();
+      const today = new Date(
+        currentDate.getTime() + koreaTimezoneOffset * 60000,
+      );
+      const deleteLecture = await this.lectureRepository
+        .createQueryBuilder('lecture')
+        .update(Lecture)
+        .set({ deletedAt: today })
+        .where('lectureId = :lectureId', { lectureId })
+        .execute();
+      return deleteLecture;
+    } catch (e) {
+      console.error(e);
+      throw new Error('LectureRepository/deleteLecture');
     }
   }
 }
