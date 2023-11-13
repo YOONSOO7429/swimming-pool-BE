@@ -11,8 +11,8 @@ export class SignInDto {
   @IsString()
   readonly password: string;
 
-  // account
+  // userType
   @IsNotEmpty()
   @IsString()
-  readonly account: string;
+  readonly userType: string;
 }

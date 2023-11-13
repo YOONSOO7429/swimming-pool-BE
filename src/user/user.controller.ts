@@ -39,7 +39,7 @@ export class UserController {
   @Post('signIn')
   async signIn(@Body() signInDto: SignInDto, @Res() res: any): Promise<any> {
     try {
-      const { identification, password, account } = signInDto;
+      const { identification, password, userType } = signInDto;
       const encryptedPassword = await bcrypt.hash(password, 11);
       const user = await this.userService.findOneUser(identification);
       // user 정보 확인
@@ -61,7 +61,7 @@ export class UserController {
         res.cookie('authorization', `Bearer ${token}`);
         return res
           .status(HttpStatus.OK)
-          .json({ message: `환영합니다!! ${account}님` });
+          .json({ message: `환영합니다!! ${userType}님` });
       }
     } catch (e) {
       console.error(e);

@@ -39,15 +39,18 @@ export class LectureRepository {
     try {
       const lecture = await this.lectureRepository
         .createQueryBuilder('lecture')
+        .leftJoin('member', 'member', 'member.lectureId = lecture.lectureId')
         .select([
-          'lectureId',
-          'userId',
-          'lectureName',
-          'lectureTime',
-          'lectureDay',
-          'lectureMaxMember',
+          'lecture.lectureId AS lectureId',
+          'lecture.userId AS userId',
+          'lecture.lectureName AS lectureName',
+          'lecture.lectureTime AS lectureTime',
+          'lecture.lectureDay AS lectureDay',
+          'lecture.lectureMaxMember AS lectureMaxMember',
+          'COUNT(DISTINCT member.userId) AS lectureAttendedMember',
         ])
         .andWhere('deletedAt IS NULL')
+        .groupBy('lecture.lectureId')
         .getRawMany();
       return lecture;
     } catch (e) {
@@ -61,15 +64,17 @@ export class LectureRepository {
     try {
       const lecture = await this.lectureRepository
         .createQueryBuilder('lecture')
+        .leftJoin('member', 'member', 'member.lectureId = lecture.lectureId')
         .select([
-          'lectureId',
-          'userId',
-          'lectureName',
-          'lectureTime',
-          'lectureDay',
-          'lectureMaxMember',
+          'lecture.lectureId AS lectureId',
+          'lecture.userId AS userId',
+          'lecture.lectureName AS lectureName',
+          'lecture.lectureTime AS lectureTime',
+          'lecture.lectureDay AS lectureDay',
+          'lecture.lectureMaxMember AS lectureMaxMember',
+          'COUNT(DISTINCT member.userId) AS lectureAttendedMember',
         ])
-        .where('lectureId = :lectureId', { lectureId })
+        .where('lecture.lectureId = :lectureId', { lectureId })
         .andWhere('deletedAt IS NULL')
         .getRawOne();
       return lecture;

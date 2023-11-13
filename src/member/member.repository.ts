@@ -49,4 +49,26 @@ export class MemberRepository {
       throw new Error('MemberRepository/deleteMember');
     }
   }
+
+  /* 멤버 조회 */
+  async findAllMember(lectureId: number): Promise<any> {
+    try {
+      const member = await this.memberRepository
+        .createQueryBuilder('member')
+        .leftJoin('user', 'user', 'user.userId = member.userId')
+        .select([
+          'member.memberId AS memberId',
+          'member.userId AS userId',
+          'user.name AS name',
+          'user.gender AS gender',
+          'user.birth AS birth',
+        ])
+        .where('member.lectureId = :lectureId', { lectureId })
+        .getRawMany();
+      return member;
+    } catch (e) {
+      console.error(e);
+      throw new Error('MemberRepository/findAllMember');
+    }
+  }
 }

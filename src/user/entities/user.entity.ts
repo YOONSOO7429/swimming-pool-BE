@@ -24,7 +24,13 @@ export class User {
   name: string;
 
   @Column({ type: 'varchar' })
-  account: string;
+  userType: string;
+
+  @Column({ type: 'varchar' })
+  gender: string;
+
+  @Column({ type: 'bigint' })
+  birth: number;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

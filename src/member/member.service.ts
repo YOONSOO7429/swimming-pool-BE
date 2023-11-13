@@ -40,4 +40,15 @@ export class MemberService {
       throw new Error('MemberService/deleteMember');
     }
   }
+
+  /* 멤버 조회 */
+  async findAllMember(lectureId: number): Promise<any> {
+    try {
+      const member = await this.memberRepository.findAllMember(lectureId);
+      return member;
+    } catch (e) {
+      console.error(e);
+      throw new Error('MemberService/findAllMember');
+    }
+  }
 }

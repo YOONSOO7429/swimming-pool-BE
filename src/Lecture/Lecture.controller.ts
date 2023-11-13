@@ -26,7 +26,7 @@ export class LectureController {
     try {
       const user = res.locals.user;
       const userId = user.userId;
-      if (user.account === '관리자') {
+      if (user.userType === '관리자') {
         const lecture = await this.lectureService.createLecture(
           createLectureDto,
           userId,

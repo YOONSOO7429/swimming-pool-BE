@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class SignUpDto {
   // identification
@@ -11,8 +11,18 @@ export class SignUpDto {
   @IsString()
   readonly password: string;
 
-  // account
+  // userType
   @IsNotEmpty()
   @IsString()
-  readonly account: string;
+  readonly userType: string;
+
+  // gender
+  @IsNotEmpty()
+  @IsString()
+  readonly gender: string;
+
+  // birth
+  @IsNotEmpty()
+  @IsNumber()
+  readonly birth: number;
 }

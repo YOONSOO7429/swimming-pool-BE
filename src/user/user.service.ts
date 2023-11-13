@@ -11,12 +11,14 @@ export class UserService {
   /* 회원 가입 */
   async signUp(signUpDto: SignUpDto): Promise<any> {
     try {
-      const { identification, password, account } = signUpDto;
+      const { identification, password, userType, gender, birth } = signUpDto;
       const encryptedPassword = await bcrypt.hash(password, 11);
       const newUser = await this.userRepository.signUp(
         identification,
         encryptedPassword,
-        account,
+        userType,
+        gender,
+        birth,
       );
       return newUser;
     } catch (e) {

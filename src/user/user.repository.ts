@@ -13,13 +13,17 @@ export class UserRepository {
   async signUp(
     identification: string,
     encryptedPassword: string,
-    account: string,
+    userType: string,
+    gender: string,
+    birth: number,
   ): Promise<any> {
     try {
       const newUser = new User();
       newUser.identification = identification;
       newUser.password = encryptedPassword;
-      newUser.account = account;
+      newUser.userType = userType;
+      newUser.gender = gender;
+      newUser.birth = birth;
       await this.userRepository.save(newUser);
       return newUser;
     } catch (e) {
@@ -56,6 +60,7 @@ export class UserRepository {
   async deleteUser(userId: number): Promise<any> {
     try {
       const deleteUser = await this.userRepository.delete({ userId });
+      return deleteUser;
     } catch (e) {
       console.error(e);
       throw new Error('UserService/deleteUser');
