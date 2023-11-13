@@ -13,6 +13,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthMiddleWare } from './middleware/auth.middleware';
 import { MemberModule } from './member/member.module';
 import { LectureModule } from './Lecture/Lecture.module';
+import { LessonModule } from './lesson/lesson.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { LectureModule } from './Lecture/Lecture.module';
     UserModule,
     MemberModule,
     LectureModule,
+    LessonModule,
   ],
   controllers: [AppController],
   providers: [AppService, JwtService],
