@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Lesson } from './entities/lesson.entity';
 import { Repository } from 'typeorm';
 import { RecordLessonDto } from './dto/recordLesson.dto';
+import { EditLessonDto } from './dto/editLesson.dto';
 
 @Injectable()
 export class LessonRepository {
@@ -29,6 +30,48 @@ export class LessonRepository {
     } catch (e) {
       console.error(e);
       throw new Error('LessonRepository/recordLesson');
+    }
+  }
+
+  /* 수업 한개 조회 */
+  async findOneLesson(lessonId: number): Promise<any> {
+    try {
+      const lesson = await this.lessonRepository
+        .createQueryBuilder('lesson')
+        .select([
+          'lessonId',
+          'userId',
+          'lectureId',
+          'lessonDay',
+          'lessonTime',
+          'lessonContent',
+        ])
+        .where('lessonId = :lessonId', { lessonId })
+        .getRawOne();
+      return lesson;
+    } catch (e) {
+      console.error(e);
+      throw new Error('LessonRepository/findOneLesson');
+    }
+  }
+
+  /* 수업 수정 */
+  async editLesson(
+    editLessonDto: EditLessonDto,
+    lessonId: number,
+  ): Promise<any> {
+    try {
+      const { lessonContent, lessonDay, lessonTime } = editLessonDto;
+      const editLesson = await this.lessonRepository
+        .createQueryBuilder('lesson')
+        .update(Lesson)
+        .set({ lessonContent, lessonDay, lessonTime })
+        .where('lessonId = :lessonId', { lessonId })
+        .execute();
+      return editLesson;
+    } catch (e) {
+      console.error(e);
+      throw new Error('LessonRepository/editLesson');
     }
   }
 }
