@@ -45,15 +45,17 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     // auth 미들웨어
     consumer.apply(AuthMiddleWare).forRoutes(
-      // user
+      // User
       { path: 'user/deleteUser', method: RequestMethod.DELETE },
-      // lecture
+      // Lecture
       { path: 'lecture/create', method: RequestMethod.POST },
       { path: 'lecture/lectureList', method: RequestMethod.GET },
       { path: 'lecture/:lectureId/detail', method: RequestMethod.GET },
       { path: 'lecture/:lectureId/edit', method: RequestMethod.PUT },
       // Member
       { path: 'member/:lectureId/registMember', method: RequestMethod.POST },
+      // Lesson
+      { path: 'lesson/:lectureId/record', method: RequestMethod.POST },
     );
   }
 }
