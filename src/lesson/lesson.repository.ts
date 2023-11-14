@@ -74,4 +74,25 @@ export class LessonRepository {
       throw new Error('LessonRepository/editLesson');
     }
   }
+
+  /* 수업 기록 삭제 */
+  async deleteLesson(lessonId: number): Promise<any> {
+    try {
+      const koreaTimezoneOffset = 9 * 60;
+      const currentDate = new Date();
+      const today = new Date(
+        currentDate.getTime() + koreaTimezoneOffset * 60000,
+      );
+      const deleteLesson = await this.lessonRepository
+        .createQueryBuilder('lesson')
+        .update(Lesson)
+        .set({ deletedAt: today })
+        .where('lessonId = :lessonId', { lessonId })
+        .execute();
+      return deleteLesson;
+    } catch (e) {
+      console.error(e);
+      throw new Error('LessonRepository/deleteLesson');
+    }
+  }
 }

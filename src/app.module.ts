@@ -57,6 +57,7 @@ export class AppModule implements NestModule {
       // Lesson
       { path: 'lesson/:lectureId/record', method: RequestMethod.POST },
       { path: 'lesson/:lessonId/edit', method: RequestMethod.PUT },
+      { path: 'lesson/:lessonId/delete', method: RequestMethod.DELETE },
     );
   }
 }

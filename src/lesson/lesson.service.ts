@@ -53,4 +53,15 @@ export class LessonService {
       throw new Error('LessonService/editLesson');
     }
   }
+
+  /* 수업 기록 삭제 */
+  async deleteLesson(lessonId: number): Promise<any> {
+    try {
+      const deleteLesson = await this.lessonRepository.deleteLesson(lessonId);
+      return deleteLesson;
+    } catch (e) {
+      console.error(e);
+      throw new Error('LessonService/deleteLesson');
+    }
+  }
 }

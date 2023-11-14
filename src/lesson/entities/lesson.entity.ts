@@ -2,10 +2,13 @@ import { Lecture } from 'src/Lecture/entities/Lecture.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity('lesson')
@@ -29,4 +32,13 @@ export class Lesson {
 
   @Column({ type: 'mediumtext' })
   lessonContent: string;
+
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ type: 'timestamp' })
+  updatedAt: Date;
+
+  @DeleteDateColumn({ type: 'datetime', nullable: true })
+  deletedAt: Date;
 }
