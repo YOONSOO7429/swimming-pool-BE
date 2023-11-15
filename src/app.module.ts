@@ -15,6 +15,7 @@ import { MemberModule } from './member/member.module';
 import { LectureModule } from './Lecture/Lecture.module';
 import { LessonModule } from './lesson/lesson.module';
 import { FeedbackModule } from './feedback/feedback.module';
+import { ParticipantModule } from './participant/participant.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { FeedbackModule } from './feedback/feedback.module';
     LectureModule,
     LessonModule,
     FeedbackModule,
+    ParticipantModule,
   ],
   controllers: [AppController],
   providers: [AppService, JwtService],
@@ -60,6 +62,8 @@ export class AppModule implements NestModule {
       { path: 'lesson/:lectureId/record', method: RequestMethod.POST },
       { path: 'lesson/:lessonId/edit', method: RequestMethod.PUT },
       { path: 'lesson/:lessonId/delete', method: RequestMethod.DELETE },
+      // Feedback
+      { path: 'feedback/:lessonId/create', method: RequestMethod.POST },
     );
   }
 }

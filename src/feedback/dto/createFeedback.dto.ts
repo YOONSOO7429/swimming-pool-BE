@@ -5,4 +5,9 @@ export class CreateFeedbackDto {
   @IsNotEmpty()
   @IsString()
   readonly feedbackContent: string;
+
+  // userId
+  @IsNotEmpty()
+  @IsNumber()
+  readonly userId: number;
 }

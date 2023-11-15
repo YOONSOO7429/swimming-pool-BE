@@ -1,5 +1,6 @@
 import { Lecture } from 'src/Lecture/entities/Lecture.entity';
 import { Feedback } from 'src/feedback/entities/feedback.entity';
+import { Participant } from 'src/participant/entities/participant.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
@@ -46,4 +47,7 @@ export class Lesson {
 
   @OneToMany(() => Feedback, (feedback) => feedback.lessonId)
   feedback: Feedback[];
+
+  @OneToMany(() => Participant, (participant) => participant.lessonId)
+  participant: Participant[];
 }

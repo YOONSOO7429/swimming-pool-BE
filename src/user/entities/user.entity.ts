@@ -2,6 +2,7 @@ import { Lecture } from 'src/Lecture/entities/Lecture.entity';
 import { Feedback } from 'src/feedback/entities/feedback.entity';
 import { Lesson } from 'src/lesson/entities/lesson.entity';
 import { Member } from 'src/member/entities/member.entity';
+import { Participant } from 'src/participant/entities/participant.entity';
 import {
   Column,
   CreateDateColumn,
@@ -51,4 +52,7 @@ export class User {
 
   @OneToMany(() => Feedback, (feedback) => feedback.userId)
   feedback: Feedback[];
+
+  @OneToMany(() => Participant, (participant) => participant.userId)
+  participant: Participant[];
 }

@@ -1,4 +1,5 @@
 import { Lesson } from 'src/lesson/entities/lesson.entity';
+import { Participant } from 'src/participant/entities/participant.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
@@ -23,6 +24,10 @@ export class Feedback {
   @ManyToOne(() => Lesson, (lesson) => lesson.feedback)
   @JoinColumn({ name: 'lessonId' })
   lessonId: number;
+
+  @ManyToOne(() => Participant, (participant) => participant.feedback)
+  @JoinColumn({ name: 'participantId' })
+  participantId: number;
 
   @Column({ type: 'varchar' })
   feedbackContent: string;
