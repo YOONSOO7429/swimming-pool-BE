@@ -6,6 +6,7 @@ import {
   Res,
   HttpStatus,
   Put,
+  Delete,
 } from '@nestjs/common';
 import { FeedbackService } from './feedback.service';
 import { CreateFeedbackDto } from './dto/createFeedback.dto';
@@ -102,6 +103,7 @@ export class FeedbackController {
           .status(HttpStatus.NOT_FOUND)
           .json({ message: '존재하지 않는 feedback입니다.' });
       }
+      // 권한 확인
       if (feedback.userId !== userId) {
         return res
           .status(HttpStatus.UNAUTHORIZED)
@@ -121,7 +123,7 @@ export class FeedbackController {
             const feedbackContent = editFeedbackDto.feedbackContent;
             await this.feedbackService.editFeedback(
               feedbackContent,
-              lessonId,
+              feedbackId,
               participantId,
             );
             return res
@@ -145,6 +147,49 @@ export class FeedbackController {
     } catch (e) {
       console.error(e);
       throw new Error('FeedbackController/editFeedback');
+    }
+  }
+
+  /* feedback 삭제 */
+  @Delete(':lessonId/:feedbackId/delete')
+  async deleteFeedback(
+    @Param('lessonId') lessonId: number,
+    @Param('feedbackId') feedbackId: number,
+    @Res() res: any,
+  ): Promise<any> {
+    try {
+      const user = res.locals.user;
+      const userId = user.userId;
+
+      // 수업 조회
+      const lesson = await this.lessonService.findOneLesson(lessonId);
+      if (!lesson) {
+        return res
+          .status(HttpStatus.NOT_FOUND)
+          .json({ message: '존재하지 않는 수업입니다.' });
+      }
+
+      // feedback 조회
+      const feedback = await this.feedbackService.findOneFeedback(feedbackId);
+      if (!feedback) {
+        return res
+          .status(HttpStatus.NOT_FOUND)
+          .json({ message: '존재하지 않는 feedback입니다.' });
+      }
+      // 권한 확인
+      if (feedback.userId !== userId) {
+        return res
+          .status(HttpStatus.UNAUTHORIZED)
+          .json({ message: 'feedback 수정 권한이 없습니다.' });
+      } else {
+        await this.feedbackService.deleteFeedback(feedbackId);
+        return res
+          .status(HttpStatus.OK)
+          .json({ message: 'feedback 삭제 완료' });
+      }
+    } catch (e) {
+      console.error(e);
+      throw new Error('FeedbackController/deleteFeedback');
     }
   }
 }

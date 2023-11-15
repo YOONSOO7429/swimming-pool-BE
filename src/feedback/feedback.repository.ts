@@ -49,14 +49,14 @@ export class FeedbackRepository {
       return feedback;
     } catch (e) {
       console.error(e);
-      throw new Error('FeedbackService/findOneFeedback');
+      throw new Error('FeedbackRepository/findOneFeedback');
     }
   }
 
   /* feedback 수정 */
   async editFeedback(
     feedbackContent: string,
-    lessonId: number,
+    feedbackId: number,
     participantId: number,
   ): Promise<any> {
     try {
@@ -64,12 +64,12 @@ export class FeedbackRepository {
         .createQueryBuilder('feedback')
         .update(Feedback)
         .set({ feedbackContent, participantId })
-        .where('lessonId = :lessonId', { lessonId })
+        .where('feedbackId = :feedbackId', { feedbackId })
         .execute();
       return feedback;
     } catch (e) {
       console.error(e);
-      throw new Error('FeedbackService/eidtFeedback');
+      throw new Error('FeedbackRepository/editFeedback');
     }
   }
 
@@ -88,7 +88,28 @@ export class FeedbackRepository {
       return feedback;
     } catch (e) {
       console.error(e);
-      throw new Error('FeedbackService/editFeedbackContent');
+      throw new Error('FeedbackRepository/editFeedbackContent');
+    }
+  }
+
+  /* feedback 삭제 */
+  async deleteFeedback(feedbackId: number): Promise<any> {
+    try {
+      const koreaTimezoneOffset = 9 * 60;
+      const currentDate = new Date();
+      const today = new Date(
+        currentDate.getTime() + koreaTimezoneOffset * 60000,
+      );
+      const feedback = await this.feedbackRepository
+        .createQueryBuilder('feedback')
+        .update(Feedback)
+        .set({ deletedAt: today })
+        .where('feedbackId = :feedbackId', { feedbackId })
+        .execute();
+      return feedback;
+    } catch (e) {
+      console.error(e);
+      throw new Error('FeedbackRepository/deleteFeedback');
     }
   }
 }

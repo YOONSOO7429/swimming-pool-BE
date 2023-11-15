@@ -42,19 +42,19 @@ export class FeedbackService {
   /* feedback 수정 */
   async editFeedback(
     feedbackContent: string,
-    lessonId: number,
+    feedbackId: number,
     participantId: number,
   ): Promise<any> {
     try {
       const feedback = await this.feedbackRepository.editFeedback(
         feedbackContent,
-        lessonId,
+        feedbackId,
         participantId,
       );
       return feedback;
     } catch (e) {
       console.error(e);
-      throw new Error('FeedbackService/eidtFeedback');
+      throw new Error('FeedbackService/editFeedback');
     }
   }
 
@@ -72,6 +72,17 @@ export class FeedbackService {
     } catch (e) {
       console.error(e);
       throw new Error('FeedbackService/editFeedbackContent');
+    }
+  }
+
+  /* feedback 삭제 */
+  async deleteFeedback(feedbackId: number): Promise<any> {
+    try {
+      const feedback = await this.feedbackRepository.deleteFeedback(feedbackId);
+      return feedback;
+    } catch (e) {
+      console.error(e);
+      throw new Error('FeedbackService/deleteFeedback');
     }
   }
 }

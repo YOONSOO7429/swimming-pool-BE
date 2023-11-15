@@ -68,6 +68,10 @@ export class AppModule implements NestModule {
         path: 'feedback/:lessonId/:feedbackId/edit',
         method: RequestMethod.PUT,
       },
+      {
+        path: 'feedback/:lessonId/:feedbackId/delete',
+        method: RequestMethod.DELETE,
+      },
     );
   }
 }
