@@ -1,4 +1,5 @@
 import { Lecture } from 'src/Lecture/entities/Lecture.entity';
+import { Feedback } from 'src/feedback/entities/feedback.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
@@ -7,6 +8,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -41,4 +43,7 @@ export class Lesson {
 
   @DeleteDateColumn({ type: 'datetime', nullable: true })
   deletedAt: Date;
+
+  @OneToMany(() => Feedback, (feedback) => feedback.lessonId)
+  feedback: Feedback[];
 }

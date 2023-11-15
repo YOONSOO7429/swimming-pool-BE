@@ -14,6 +14,7 @@ import { AuthMiddleWare } from './middleware/auth.middleware';
 import { MemberModule } from './member/member.module';
 import { LectureModule } from './Lecture/Lecture.module';
 import { LessonModule } from './lesson/lesson.module';
+import { FeedbackModule } from './feedback/feedback.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { LessonModule } from './lesson/lesson.module';
     MemberModule,
     LectureModule,
     LessonModule,
+    FeedbackModule,
   ],
   controllers: [AppController],
   providers: [AppService, JwtService],
