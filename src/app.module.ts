@@ -17,6 +17,7 @@ import { LessonModule } from './lesson/lesson.module';
 import { FeedbackModule } from './feedback/feedback.module';
 import { ParticipantModule } from './participant/participant.module';
 import { CommentModule } from './comment/comment.module';
+import { RecommentModule } from './recomment/recomment.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { CommentModule } from './comment/comment.module';
     FeedbackModule,
     ParticipantModule,
     CommentModule,
+    RecommentModule,
   ],
   controllers: [AppController],
   providers: [AppService, JwtService],
