@@ -8,7 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { MemberService } from './member.service';
-import { LectureService } from 'src/Lecture/Lecture.service';
+import { LectureService } from 'src/lecture/Lecture.service';
 import { RegistMemberDto } from './dto/registMember.dto';
 import { DeleteMemberDto } from './dto/deleteMember.dto';
 

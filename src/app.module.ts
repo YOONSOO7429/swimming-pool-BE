@@ -12,7 +12,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AuthMiddleWare } from './middleware/auth.middleware';
 import { MemberModule } from './member/member.module';
-import { LectureModule } from './Lecture/Lecture.module';
+import { LectureModule } from './lecture/Lecture.module';
 import { LessonModule } from './lesson/lesson.module';
 import { FeedbackModule } from './feedback/feedback.module';
 import { ParticipantModule } from './participant/participant.module';

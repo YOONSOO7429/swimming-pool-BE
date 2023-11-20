@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { LessonService } from './lesson.service';
 import { RecordLessonDto } from './dto/recordLesson.dto';
-import { LectureService } from 'src/Lecture/Lecture.service';
+import { LectureService } from 'src/lecture/Lecture.service';
 import { EditLessonDto } from './dto/editLesson.dto';
 
 @Controller('lesson')

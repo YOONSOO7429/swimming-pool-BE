@@ -4,7 +4,7 @@ import { MemberService } from './member.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Member } from './entities/member.entity';
 import { MemberRepository } from './member.repository';
-import { LectureModule } from 'src/Lecture/Lecture.module';
+import { LectureModule } from 'src/lecture/Lecture.module';
 
 @Module({
   imports: [

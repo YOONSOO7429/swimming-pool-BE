@@ -4,7 +4,7 @@ import { LessonService } from './lesson.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Lesson } from './entities/lesson.entity';
 import { LessonRepository } from './lesson.repository';
-import { LectureModule } from 'src/Lecture/Lecture.module';
+import { LectureModule } from 'src/lecture/Lecture.module';
 
 @Module({
   imports: [

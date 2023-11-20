@@ -1,4 +1,4 @@
-import { Lecture } from 'src/Lecture/entities/Lecture.entity';
+import { Lecture } from 'src/lecture/entities/Lecture.entity';
 import { Comment } from 'src/comment/entities/comment.entity';
 import { Feedback } from 'src/feedback/entities/feedback.entity';
 import { Lesson } from 'src/lesson/entities/lesson.entity';
