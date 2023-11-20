@@ -44,15 +44,29 @@ export class CommentService {
     userId: number,
   ): Promise<any> {
     try {
-      const comment = await this.commentRepository.editComment(
+      const editComment = await this.commentRepository.editComment(
         editCommentDto,
         lectureId,
         userId,
       );
-      return comment;
+      return editComment;
     } catch (e) {
       console.error(e);
       throw new Error('CommentService/editComment');
+    }
+  }
+
+  /* comment 삭제 */
+  async deleteComment(lectureId: number, userId: number): Promise<any> {
+    try {
+      const deleteComment = await this.commentRepository.deleteComment(
+        lectureId,
+        userId,
+      );
+      return deleteComment;
+    } catch (e) {
+      console.error(e);
+      throw new Error('CommentService/deleteComment');
     }
   }
 }

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   HttpStatus,
   Param,
   Post,
@@ -65,7 +66,7 @@ export class CommentController {
   }
 
   /* comment 수정 */
-  @Put(':lectureId/:commnetId/editComment')
+  @Put(':lectureId/:commentId/editComment')
   async editComment(
     @Body() editCommentDto: EditCommentDto,
     @Param('lectureId') lectureId: number,
@@ -89,7 +90,7 @@ export class CommentController {
       if (!comment) {
         return res
           .status(HttpStatus.UNAUTHORIZED)
-          .json({ message: '수정 권한인 없습니다.' });
+          .json({ message: '수정 권한이 없습니다.' });
       }
 
       // comment 수정
@@ -98,6 +99,42 @@ export class CommentController {
     } catch (e) {
       console.error(e);
       throw new Error('CommentController/editComment');
+    }
+  }
+
+  /* comment 삭제 */
+  @Delete(':lectureId/:commentId/deleteComment')
+  async deleteComment(
+    @Param('lectureId') lectureId: number,
+    @Param('commentId') commentId: number,
+    @Res() res: any,
+  ): Promise<any> {
+    try {
+      const user = res.locals.user;
+      const userId = user.userId;
+
+      // 강좌 조회
+      const lecture = await this.lectureService.findOneLecture(lectureId);
+      if (!lecture) {
+        return res
+          .status(HttpStatus.NOT_FOUND)
+          .json({ message: '존재하지 않는 강좌입니다.' });
+      }
+
+      // comment 권한 확인
+      const comment = await this.commentService.findOneComment(commentId);
+      if (!comment) {
+        return res
+          .status(HttpStatus.UNAUTHORIZED)
+          .json({ message: '수정 권한이 없습니다.' });
+      }
+
+      // comment 삭제
+      await this.commentService.deleteComment(lectureId, userId);
+      return res.status(HttpStatus.OK).json({ message: '댓글 삭제 완료' });
+    } catch (e) {
+      console.error(e);
+      throw new Error('CommentController/deleteComment');
     }
   }
 }

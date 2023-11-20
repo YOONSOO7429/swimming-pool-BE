@@ -67,4 +67,26 @@ export class CommentRepository {
       throw new Error('CommentRepository/editComment');
     }
   }
+
+  /* comment 삭제 */
+  async deleteComment(lectureId: number, userId: number): Promise<any> {
+    try {
+      const koreaTimezoneOffset = 9 * 60;
+      const currentDate = new Date();
+      const today = new Date(
+        currentDate.getTime() + koreaTimezoneOffset * 60000,
+      );
+      const deleteComment = await this.commentRepository
+        .createQueryBuilder('commnet')
+        .update(Comment)
+        .set({ deletedAt: today })
+        .where('lectureId = :lectureId', { lectureId })
+        .andWhere('userId = :userId', { userId })
+        .execute();
+      return deleteComment;
+    } catch (e) {
+      console.error(e);
+      throw new Error('CommentRepository/deleteComment');
+    }
+  }
 }
