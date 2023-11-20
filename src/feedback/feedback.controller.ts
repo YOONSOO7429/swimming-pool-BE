@@ -23,7 +23,7 @@ export class FeedbackController {
   ) {}
 
   /* feedback 생성 */
-  @Post(':lessonId/create')
+  @Post(':lessonId/createFeedback')
   async createFeedback(
     @Body() createFeedbackDto: CreateFeedbackDto,
     @Param('lessonId') lessonId: number,
@@ -77,7 +77,7 @@ export class FeedbackController {
   }
 
   /* feedback 수정 */
-  @Put(':lessonId/:feedbackId/edit')
+  @Put(':lessonId/:feedbackId/editFeedback')
   async editFeedback(
     @Body() editFeedbackDto: EditFeedbackDto,
     @Param('lessonId') lessonId: number,
@@ -151,7 +151,7 @@ export class FeedbackController {
   }
 
   /* feedback 삭제 */
-  @Delete(':lessonId/:feedbackId/delete')
+  @Delete(':lessonId/:feedbackId/deleteFeedback')
   async deleteFeedback(
     @Param('lessonId') lessonId: number,
     @Param('feedbackId') feedbackId: number,

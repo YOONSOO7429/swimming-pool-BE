@@ -1,4 +1,5 @@
 import { Lecture } from 'src/Lecture/entities/Lecture.entity';
+import { Comment } from 'src/comment/entities/comment.entity';
 import { Feedback } from 'src/feedback/entities/feedback.entity';
 import { Lesson } from 'src/lesson/entities/lesson.entity';
 import { Member } from 'src/member/entities/member.entity';
@@ -55,4 +56,7 @@ export class User {
 
   @OneToMany(() => Participant, (participant) => participant.userId)
   participant: Participant[];
+
+  @OneToMany(() => Comment, (comment) => comment.userId)
+  comment: Comment[];
 }

@@ -21,7 +21,7 @@ export class LessonController {
   ) {}
 
   /* 수업 기록하기 */
-  @Post(':lectureId/record')
+  @Post(':lectureId/recordLesson')
   async recordLesson(
     @Body() recordLessonDto: RecordLessonDto,
     @Param('lectureId') lectureId: number,
@@ -53,7 +53,7 @@ export class LessonController {
   }
 
   /* 수업 기록 수정하기 */
-  @Put(':lessonId/edit')
+  @Put(':lessonId/editLesson')
   async editLesson(
     @Body() editLessonDto: EditLessonDto,
     @Param('lessonId') lessonId: number,
@@ -85,7 +85,7 @@ export class LessonController {
   }
 
   /* 수업 기록 삭제하기 */
-  @Delete(':lessonId/delete')
+  @Delete(':lessonId/deleteLesson')
   async deleteLesson(
     @Param('lessonId') lessonId: number,
     @Res() res: any,

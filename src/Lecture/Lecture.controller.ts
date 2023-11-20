@@ -18,7 +18,7 @@ export class LectureController {
   constructor(private readonly lectureService: LectureService) {}
 
   /* 강좌 생성 */
-  @Post('create')
+  @Post('createLecture')
   async createLecture(
     @Body() createLectureDto: CreateLectureDto,
     @Res() res: any,
@@ -59,7 +59,7 @@ export class LectureController {
   }
 
   /* 강좌 상세 조회 */
-  @Get(':lectureId/detail')
+  @Get(':lectureId/detailLecture')
   async detailLecture(
     @Param('lectureId') lectureId: number,
     @Res() res: any,
@@ -80,7 +80,7 @@ export class LectureController {
   }
 
   /* 강좌 수정 */
-  @Put(':lectureId/edit')
+  @Put(':lectureId/editLecture')
   async editLecture(
     @Body() editLectureDto: EditLectureDto,
     @Param('lectureId') lectureId: number,
@@ -115,7 +115,7 @@ export class LectureController {
   }
 
   /* 강좌 삭제 */
-  @Delete(':lectureId/delete')
+  @Delete(':lectureId/deleteLecture')
   async deleteLecture(
     @Param('lectureId') lectureId: number,
     @Res() res: any,

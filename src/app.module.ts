@@ -16,6 +16,7 @@ import { LectureModule } from './Lecture/Lecture.module';
 import { LessonModule } from './lesson/lesson.module';
 import { FeedbackModule } from './feedback/feedback.module';
 import { ParticipantModule } from './participant/participant.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { ParticipantModule } from './participant/participant.module';
     LessonModule,
     FeedbackModule,
     ParticipantModule,
+    CommentModule,
   ],
   controllers: [AppController],
   providers: [AppService, JwtService],
@@ -52,26 +54,32 @@ export class AppModule implements NestModule {
       // User
       { path: 'user/deleteUser', method: RequestMethod.DELETE },
       // Lecture
-      { path: 'lecture/create', method: RequestMethod.POST },
+      { path: 'lecture/createLecture', method: RequestMethod.POST },
       { path: 'lecture/lectureList', method: RequestMethod.GET },
-      { path: 'lecture/:lectureId/detail', method: RequestMethod.GET },
-      { path: 'lecture/:lectureId/edit', method: RequestMethod.PUT },
+      { path: 'lecture/:lectureId/detailLecture', method: RequestMethod.GET },
+      { path: 'lecture/:lectureId/editLecture', method: RequestMethod.PUT },
+      {
+        path: 'lecture/:lectureId/deleteLecture',
+        method: RequestMethod.DELETE,
+      },
       // Member
       { path: 'member/:lectureId/registMember', method: RequestMethod.POST },
       // Lesson
-      { path: 'lesson/:lectureId/record', method: RequestMethod.POST },
-      { path: 'lesson/:lessonId/edit', method: RequestMethod.PUT },
-      { path: 'lesson/:lessonId/delete', method: RequestMethod.DELETE },
+      { path: 'lesson/:lectureId/recordLesson', method: RequestMethod.POST },
+      { path: 'lesson/:lessonId/editLesson', method: RequestMethod.PUT },
+      { path: 'lesson/:lessonId/deleteLesson', method: RequestMethod.DELETE },
       // Feedback
-      { path: 'feedback/:lessonId/create', method: RequestMethod.POST },
+      { path: 'feedback/:lessonId/createFeedback', method: RequestMethod.POST },
       {
-        path: 'feedback/:lessonId/:feedbackId/edit',
+        path: 'feedback/:lessonId/:feedbackId/editFeedback',
         method: RequestMethod.PUT,
       },
       {
-        path: 'feedback/:lessonId/:feedbackId/delete',
+        path: 'feedback/:lessonId/:feedbackId/deleteFeedback',
         method: RequestMethod.DELETE,
       },
+      // Comment
+      { path: 'comment/:lectureId/createComment', method: RequestMethod.POST },
     );
   }
 }
