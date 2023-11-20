@@ -80,6 +80,10 @@ export class AppModule implements NestModule {
       },
       // Comment
       { path: 'comment/:lectureId/createComment', method: RequestMethod.POST },
+      {
+        path: 'comment/:lectureId/:commentId/editComment',
+        method: RequestMethod.PUT,
+      },
     );
   }
 }
