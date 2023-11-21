@@ -12,6 +12,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Recomment } from 'src/recomment/entities/recomment.entity';
 
 @Entity('user')
 export class User {
@@ -59,4 +60,7 @@ export class User {
 
   @OneToMany(() => Comment, (comment) => comment.userId)
   comment: Comment[];
+
+  @OneToMany(() => Recomment, (recomment) => recomment.userId)
+  recomment: Recomment[];
 }

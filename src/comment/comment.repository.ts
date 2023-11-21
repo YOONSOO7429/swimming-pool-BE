@@ -35,7 +35,7 @@ export class CommentRepository {
     try {
       const comment = await this.commentRepository
         .createQueryBuilder('comment')
-        .select(['userId'])
+        .select(['commentId', 'userId', 'lectureId', 'comment'])
         .where('commentId = :commentId', { commentId })
         .getRawOne();
       return comment;
