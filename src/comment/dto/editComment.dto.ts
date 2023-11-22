@@ -1,8 +1,8 @@
 import { IsOptional, IsString } from 'class-validator';
 
 export class EditCommentDto {
-  // comment
+  // commentContent
   @IsOptional()
   @IsString()
-  readonly comment: string;
+  readonly commentContent: string;
 }

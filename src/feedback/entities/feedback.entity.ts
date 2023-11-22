@@ -30,7 +30,7 @@ export class Feedback {
   participantId: number;
 
   @Column({ type: 'varchar' })
-  feedback: string;
+  feedbackContent: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

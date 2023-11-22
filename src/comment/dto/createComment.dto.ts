@@ -1,8 +1,8 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateCommentDto {
-  // comment
+  // commentContent
   @IsNotEmpty()
   @IsString()
-  readonly comment: string;
+  readonly commentContent: string;
 }

@@ -27,7 +27,7 @@ export class Comment {
   lectureId: number;
 
   @Column({ type: 'varchar' })
-  comment: string;
+  commentContent: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

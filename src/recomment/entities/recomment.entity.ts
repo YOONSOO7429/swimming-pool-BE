@@ -25,7 +25,7 @@ export class Recomment {
   commentId: number;
 
   @Column({ type: 'mediumtext' })
-  recomment: string;
+  recommentContent: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

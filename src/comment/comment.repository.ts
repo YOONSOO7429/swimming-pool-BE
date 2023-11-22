@@ -19,7 +19,7 @@ export class CommentRepository {
   ): Promise<any> {
     try {
       const comment = new Comment();
-      comment.comment = createCommentDto.comment;
+      comment.commentContent = createCommentDto.commentContent;
       comment.lectureId = lectureId;
       comment.userId = userId;
       await this.commentRepository.save(comment);
@@ -35,7 +35,7 @@ export class CommentRepository {
     try {
       const comment = await this.commentRepository
         .createQueryBuilder('comment')
-        .select(['commentId', 'userId', 'lectureId', 'comment'])
+        .select(['commentId', 'userId', 'lectureId', 'commentContent'])
         .where('commentId = :commentId', { commentId })
         .getRawOne();
       return comment;
@@ -52,12 +52,12 @@ export class CommentRepository {
     userId: number,
   ): Promise<any> {
     try {
-      const { comment } = editCommentDto;
+      const { commentContent } = editCommentDto;
 
       const editComment = await this.commentRepository
         .createQueryBuilder('comment')
         .update(Comment)
-        .set({ comment })
+        .set({ commentContent })
         .where('lectureId = :lectureId', { lectureId })
         .andWhere('userId = :userId', { userId })
         .execute();

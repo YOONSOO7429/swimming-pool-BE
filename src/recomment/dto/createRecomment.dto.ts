@@ -1,8 +1,8 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateRecommentDto {
-  // recomment
+  // recommentContent
   @IsNotEmpty()
   @IsString()
-  readonly recomment: string;
+  readonly recommentContent: string;
 }
