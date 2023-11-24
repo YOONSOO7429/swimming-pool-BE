@@ -26,9 +26,24 @@ export class UserController {
           .status(HttpStatus.NOT_ACCEPTABLE)
           .json({ message: '이미 가입이 완료된 정보입니다.' });
       }
-      await this.userService.signUp(signUpDto);
-
-      return res.status(HttpStatus.OK).json({ message: '회원가입 성공' });
+      if (signUpDto.userType === '회원') {
+        await this.userService.signUp(signUpDto);
+        return res
+          .status(HttpStatus.OK)
+          .json({ message: `${signUpDto.userType} 가입 성공` });
+      }
+      if (signUpDto.userType === '관리자') {
+        if (signUpDto.authorizationCode === process.env.AUTHORIZATION_CODE) {
+          await this.userService.signUp(signUpDto);
+          return res
+            .status(HttpStatus.OK)
+            .json({ message: `${signUpDto.userType} 가입 성공` });
+        } else {
+          return res
+            .status(HttpStatus.UNAUTHORIZED)
+            .json({ message: '승인 코드를 확인해주세요' });
+        }
+      }
     } catch (e) {
       console.error(e);
       throw new Error('UserController/signUp');

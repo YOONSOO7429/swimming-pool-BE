@@ -34,8 +34,8 @@ export class User {
   @Column({ type: 'varchar' })
   gender: string;
 
-  @Column({ type: 'bigint' })
-  birth: number;
+  @Column({ type: 'date' })
+  birth: Date;
 
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;

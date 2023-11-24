@@ -15,7 +15,8 @@ export class UserRepository {
     encryptedPassword: string,
     userType: string,
     gender: string,
-    birth: number,
+    name: string,
+    birth: string,
   ): Promise<any> {
     try {
       const newUser = new User();
@@ -23,7 +24,8 @@ export class UserRepository {
       newUser.password = encryptedPassword;
       newUser.userType = userType;
       newUser.gender = gender;
-      newUser.birth = birth;
+      newUser.name = name;
+      newUser.birth = new Date(birth);
       await this.userRepository.save(newUser);
       return newUser;
     } catch (e) {
