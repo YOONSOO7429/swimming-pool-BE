@@ -73,6 +73,9 @@ export class LectureController {
     @Res() res: any,
   ): Promise<any> {
     try {
+      const user = res.locals.user;
+      const userId = user.userId;
+
       // 강좌 조회
       const lecture = await this.lectureService.findOneLecture(lectureId);
       if (!lecture) {
@@ -82,13 +85,21 @@ export class LectureController {
       }
       // member 조회
       const member = await this.memberService.findAllMember(lectureId);
-      // lesson 조회
-      const lesson = await this.lessonService.findAllLesson(lectureId);
-      // comment 조회
-      const comment = await this.commentService.findAllComment(lectureId);
-      return res
-        .status(HttpStatus.OK)
-        .json({ lecture, member, lesson, comment });
+      member.map(async (m) => {
+        if (m.userId === userId) {
+          // lesson 조회
+          const lesson = await this.lessonService.findAllLesson(lectureId);
+          // comment 조회
+          const comment = await this.commentService.findAllComment(lectureId);
+          return res
+            .status(HttpStatus.OK)
+            .json({ lecture, member, lesson, comment });
+        } else {
+          return res
+            .status(HttpStatus.UNAUTHORIZED)
+            .json({ message: '강습 중인 강좌가 아닙니다.' });
+        }
+      });
     } catch (e) {
       console.error(e);
       throw new Error('LectureController/detailLecture');
