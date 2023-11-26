@@ -53,6 +53,22 @@ export class FeedbackRepository {
     }
   }
 
+  /* 나의 feedback 조회 */
+  async findMyFeedback(userId: number, lessonId: number): Promise<any> {
+    try {
+      const feedback = await this.feedbackRepository
+        .createQueryBuilder('feedback')
+        .select(['feedbackId', 'participantId', 'feedbackContent'])
+        .where('userId = :userId', { userId })
+        .andWhere('lessonId = :lessonId', { lessonId })
+        .getRawOne();
+      return feedback;
+    } catch (e) {
+      console.error(e);
+      throw new Error('FeedbackRepository/findMyFeedback');
+    }
+  }
+
   /* feedback 수정 */
   async editFeedback(
     feedbackContent: string,

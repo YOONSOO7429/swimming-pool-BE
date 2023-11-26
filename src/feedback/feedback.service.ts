@@ -39,6 +39,20 @@ export class FeedbackService {
     }
   }
 
+  /* 나의 feedback 조회 */
+  async findMyFeedback(userId: number, lessonId: number): Promise<any> {
+    try {
+      const feedback = await this.feedbackRepository.findMyFeedback(
+        userId,
+        lessonId,
+      );
+      return feedback;
+    } catch (e) {
+      console.error(e);
+      throw new Error('FeedbackService/findMyFeedback');
+    }
+  }
+
   /* feedback 수정 */
   async editFeedback(
     feedbackContent: string,

@@ -15,8 +15,16 @@ export class ParticipantRepository {
     try {
       const participant = await this.participantRepository
         .createQueryBuilder('participant')
-        .select(['participantId', 'userId'])
-        .where('lessonId = :lessonId', { lessonId })
+        .leftJoin('user', 'user', 'user.userId = participant.userId')
+        .select([
+          'participant.participantId AS participantId',
+          'participant.userId AS userId',
+          'user.name AS name',
+          'user.gender AS gender',
+          'user.birth AS birth',
+        ])
+        .where('participant.lessonId = :lessonId', { lessonId })
+        .orderBy('user.name', 'ASC')
         .getRawMany();
       return participant;
     } catch (e) {
