@@ -37,6 +37,17 @@ export class CommentService {
     }
   }
 
+  /* comment 모두 조회 */
+  async findAllComment(lectureId: number): Promise<any> {
+    try {
+      const comment = await this.commentRepository.findAllComment(lectureId);
+      return comment;
+    } catch (e) {
+      console.error(e);
+      throw new Error('CommentService/findAllComment');
+    }
+  }
+
   /* comment 수정 */
   async editComment(
     editCommentDto: EditCommentDto,

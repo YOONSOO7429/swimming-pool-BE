@@ -12,10 +12,18 @@ import {
 import { LectureService } from './Lecture.service';
 import { CreateLectureDto } from './dto/createLecture.dto';
 import { EditLectureDto } from './dto/editLecture.dto';
+import { MemberService } from 'src/member/member.service';
+import { LessonService } from 'src/lesson/lesson.service';
+import { CommentService } from 'src/comment/comment.service';
 
 @Controller('lecture')
 export class LectureController {
-  constructor(private readonly lectureService: LectureService) {}
+  constructor(
+    private readonly lectureService: LectureService,
+    private readonly memberService: MemberService,
+    private readonly lessonService: LessonService,
+    private readonly commentService: CommentService,
+  ) {}
 
   /* 강좌 생성 */
   @Post('createLecture')
@@ -72,7 +80,15 @@ export class LectureController {
           .status(HttpStatus.NOT_FOUND)
           .json({ message: '조회된 강좌가 없습니다.' });
       }
-      return res.status(HttpStatus.OK).json(lecture);
+      // member 조회
+      const member = await this.memberService.findAllMember(lectureId);
+      // lesson 조회
+      const lesson = await this.lessonService.findAllLesson(lectureId);
+      // comment 조회
+      const comment = await this.commentService.findAllComment(lectureId);
+      return res
+        .status(HttpStatus.OK)
+        .json({ lecture, member, lesson, comment });
     } catch (e) {
       console.error(e);
       throw new Error('LectureController/detailLecture');

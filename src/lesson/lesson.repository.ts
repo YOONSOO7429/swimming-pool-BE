@@ -75,6 +75,34 @@ export class LessonRepository {
     }
   }
 
+  /* 수업 전체 조회 */
+  async findAllLesson(lectureId: number): Promise<any> {
+    try {
+      const lesson = await this.lessonRepository
+        .createQueryBuilder('lesson')
+        .leftJoin(
+          'participant',
+          'participant',
+          'participant.lessonId = lesson.lessonId',
+        )
+        .select([
+          'lesson.lessonId AS lessonId',
+          'lesson.lessonDay AS lessonDay',
+          'lesson.lessonTime AS lessonTime',
+          'lesson.lessonContent AS lessonContent',
+          'COUNT(DISTINCT participant.userId) AS participantCount',
+        ])
+        .where('lesson.lectureId = :lectureId', { lectureId })
+        .andWhere('lesson.deletedAt IS NULL')
+        .orderBy('lesson.createdAt', 'DESC')
+        .getRawMany();
+      return lesson;
+    } catch (e) {
+      console.error(e);
+      throw new Error('LessonService/findAllLesson');
+    }
+  }
+
   /* 수업 기록 삭제 */
   async deleteLesson(lessonId: number): Promise<any> {
     try {

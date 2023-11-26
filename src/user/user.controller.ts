@@ -55,7 +55,6 @@ export class UserController {
   async signIn(@Body() signInDto: SignInDto, @Res() res: any): Promise<any> {
     try {
       const { identification, password, userType } = signInDto;
-      const encryptedPassword = await bcrypt.hash(password, 11);
       const user = await this.userService.findOneUser(identification);
       // user 정보 확인
       if (!user) {
@@ -63,14 +62,16 @@ export class UserController {
           .status(HttpStatus.NOT_FOUND)
           .json({ message: '유저 정보가 없습니다. 가입이 필요합니다.' });
       }
+
       // 비밀 번호 확인
-      if (user.password !== encryptedPassword) {
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
         return res
           .status(HttpStatus.NOT_ACCEPTABLE)
           .json({ message: '비밀번호가 일치하지 않습니다.' });
       }
       // signIn
-      if (user.password === encryptedPassword) {
+      if (match) {
         const userId = user.userId;
         const token = await this.userService.getToken(userId);
         res.cookie('authorization', `Bearer ${token}`);

@@ -45,6 +45,45 @@ export class CommentRepository {
     }
   }
 
+  /* comment 모두 조회 */
+  async findAllComment(lectureId: number): Promise<any> {
+    try {
+      const comment = await this.commentRepository
+        .createQueryBuilder('comment')
+        .leftJoin('user', 'user', 'user.userId = comment.userId')
+        .leftJoin(
+          'recomment',
+          'recomment',
+          'recomment.commentId = comment.commentId',
+        )
+        .leftJoin(
+          'user',
+          'recomment_user',
+          'recomment_user.userId = user.userId',
+        )
+        .select([
+          'comment.commentId AS commentId',
+          'comment.commentContent AS commentContent',
+          'comment.userId AS userId',
+          'user.name AS name',
+          `JSON_ARRAYAGG(JSON_OBJECT(
+            'recommentId', recomment.recommentId,
+            'recommentContent', recomment.recommentContent,
+            'userId', recomment.userId,
+            'name', recomment_user.name
+            ))AS recomment`,
+        ])
+        .where('comment.lectureId = :lectureId', { lectureId })
+        .andWhere('comment.deletedAt IS NULL')
+        .orderBy('comment.createdAt', 'DESC')
+        .getRawMany();
+      return comment;
+    } catch (e) {
+      console.error(e);
+      throw new Error('CommentRepository/findAllComment');
+    }
+  }
+
   /* comment 수정 */
   async editComment(
     editCommentDto: EditCommentDto,

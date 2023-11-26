@@ -37,6 +37,17 @@ export class LessonService {
     }
   }
 
+  /* 수업 전체 조회 */
+  async findAllLesson(lectureId: number): Promise<any> {
+    try {
+      const lesson = await this.lessonRepository.findAllLesson(lectureId);
+      return lesson;
+    } catch (e) {
+      console.error(e);
+      throw new Error('LessonService/findAllLesson');
+    }
+  }
+
   /* 수업 수정 */
   async editLesson(
     editLessonDto: EditLessonDto,
