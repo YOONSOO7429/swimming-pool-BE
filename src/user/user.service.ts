@@ -47,7 +47,7 @@ export class UserService {
       return exUser;
     } catch (e) {
       console.error(e);
-      throw new Error('UserService/validateUser');
+      throw new Error('UserService/findOneUser');
     }
   }
 
