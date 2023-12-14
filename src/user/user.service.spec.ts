@@ -1,5 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UserService } from './user.service';
+import { Repository } from 'typeorm';
+
+const MockUserRespository = () => ({
+  find: jest.fn(),
+});
+
+type MockRespository<T = any> = Partial<Record<keyof Repository<T>, jest.Mock>>;
 
 describe('UserService', () => {
   let service: UserService;
