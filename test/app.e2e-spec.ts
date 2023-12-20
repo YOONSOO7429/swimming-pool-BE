@@ -4,6 +4,14 @@ import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { UserModule } from 'src/user/user.module';
+import { MemberModule } from 'src/member/member.module';
+import { LectureModule } from 'src/lecture/Lecture.module';
+import { LessonModule } from 'src/lesson/lesson.module';
+import { FeedbackModule } from 'src/feedback/feedback.module';
+import { ParticipantModule } from 'src/participant/participant.module';
+import { CommentModule } from 'src/comment/comment.module';
+import { RecommentModule } from 'src/recomment/recomment.module';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -27,6 +35,14 @@ describe('AppController (e2e)', () => {
           // synchronize: true,
           synchronize: false,
         }),
+        UserModule,
+        MemberModule,
+        LectureModule,
+        LessonModule,
+        FeedbackModule,
+        ParticipantModule,
+        CommentModule,
+        RecommentModule,
       ],
     }).compile();
 
