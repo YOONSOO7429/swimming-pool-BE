@@ -8,10 +8,10 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { RecommentService } from './recomment.service';
-import { CreateRecommentDto } from './dto/createRecomment.dto';
-import { CommentService } from 'src/comment/comment.service';
-import { EditRecommentDto } from './dto/editRecomment.dto';
+import { RecommentService } from '@src/recomment/recomment.service';
+import { CreateRecommentDto } from '@src/recomment/dto/createRecomment.dto';
+import { CommentService } from '@src/comment/comment.service';
+import { EditRecommentDto } from '@src/recomment/dto/editRecomment.dto';
 
 @Controller('recomment')
 export class RecommentController {

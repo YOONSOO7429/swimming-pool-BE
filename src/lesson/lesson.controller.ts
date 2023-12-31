@@ -9,12 +9,12 @@ import {
   Delete,
   Get,
 } from '@nestjs/common';
-import { LessonService } from './lesson.service';
-import { RecordLessonDto } from './dto/recordLesson.dto';
-import { LectureService } from 'src/lecture/Lecture.service';
-import { EditLessonDto } from './dto/editLesson.dto';
-import { ParticipantService } from 'src/participant/participant.service';
-import { FeedbackService } from 'src/feedback/feedback.service';
+import { LessonService } from '@src/lesson/lesson.service';
+import { RecordLessonDto } from '@src/lesson/dto/recordLesson.dto';
+import { LectureService } from '@src/lecture/Lecture.service';
+import { EditLessonDto } from '@src/lesson/dto/editLesson.dto';
+import { ParticipantService } from '@src/participant/participant.service';
+import { FeedbackService } from '@src/feedback/feedback.service';
 
 @Controller('lesson')
 export class LessonController {

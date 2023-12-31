@@ -8,11 +8,11 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
-import { FeedbackService } from './feedback.service';
-import { CreateFeedbackDto } from './dto/createFeedback.dto';
-import { LessonService } from 'src/lesson/lesson.service';
-import { ParticipantService } from 'src/participant/participant.service';
-import { EditFeedbackDto } from './dto/editFeedback.dto';
+import { FeedbackService } from '@src/feedback/feedback.service';
+import { CreateFeedbackDto } from '@src/feedback/dto/createFeedback.dto';
+import { LessonService } from '@src/lesson/lesson.service';
+import { ParticipantService } from '@src/participant/participant.service';
+import { EditFeedbackDto } from '@src/feedback/dto/editFeedback.dto';
 
 @Controller('feedback')
 export class FeedbackController {

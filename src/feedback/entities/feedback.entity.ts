@@ -1,6 +1,6 @@
-import { Lesson } from 'src/lesson/entities/lesson.entity';
-import { Participant } from 'src/participant/entities/participant.entity';
-import { User } from 'src/user/entities/user.entity';
+import { Lesson } from '@src/lesson/entities/lesson.entity';
+import { Participant } from '@src/participant/entities/participant.entity';
+import { User } from '@src/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,

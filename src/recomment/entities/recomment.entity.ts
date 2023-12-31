@@ -1,5 +1,5 @@
-import { Comment } from 'src/comment/entities/comment.entity';
-import { User } from 'src/user/entities/user.entity';
+import { Comment } from '@src/comment/entities/comment.entity';
+import { User } from '@src/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,

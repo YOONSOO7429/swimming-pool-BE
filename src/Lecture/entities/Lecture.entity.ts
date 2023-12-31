@@ -1,7 +1,7 @@
-import { Comment } from 'src/comment/entities/comment.entity';
-import { Lesson } from 'src/lesson/entities/lesson.entity';
-import { Member } from 'src/member/entities/member.entity';
-import { User } from 'src/user/entities/user.entity';
+import { Comment } from '@src/comment/entities/comment.entity';
+import { Lesson } from '@src/lesson/entities/lesson.entity';
+import { Member } from '@src/member/entities/member.entity';
+import { User } from '@src/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,

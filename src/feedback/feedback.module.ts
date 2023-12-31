@@ -1,11 +1,11 @@
 import { Module, forwardRef } from '@nestjs/common';
-import { FeedbackController } from './feedback.controller';
-import { FeedbackService } from './feedback.service';
+import { FeedbackController } from '@src/feedback/feedback.controller';
+import { FeedbackService } from '@src/feedback/feedback.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Feedback } from './entities/feedback.entity';
-import { FeedbackRepository } from './feedback.repository';
-import { LessonModule } from 'src/lesson/lesson.module';
-import { ParticipantModule } from 'src/participant/participant.module';
+import { Feedback } from '@src/feedback/entities/feedback.entity';
+import { FeedbackRepository } from '@src/feedback/feedback.repository';
+import { LessonModule } from '@src/lesson/lesson.module';
+import { ParticipantModule } from '@src/participant/participant.module';
 
 @Module({
   imports: [

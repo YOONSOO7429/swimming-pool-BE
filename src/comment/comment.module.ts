@@ -1,11 +1,11 @@
 import { Module, forwardRef } from '@nestjs/common';
-import { CommentController } from './comment.controller';
-import { CommentService } from './comment.service';
+import { CommentController } from '@src/comment/comment.controller';
+import { CommentService } from '@src/comment/comment.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Comment } from './entities/comment.entity';
-import { CommentRepository } from './comment.repository';
-import { LectureModule } from 'src/lecture/Lecture.module';
-import { MemberModule } from 'src/member/member.module';
+import { Comment } from '@src/comment/entities/comment.entity';
+import { CommentRepository } from '@src/comment/comment.repository';
+import { LectureModule } from '@src/lecture/Lecture.module';
+import { MemberModule } from '@src/member/member.module';
 
 @Module({
   imports: [

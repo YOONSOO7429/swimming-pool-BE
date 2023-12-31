@@ -1,10 +1,10 @@
 import { Module, forwardRef } from '@nestjs/common';
-import { MemberController } from './member.controller';
-import { MemberService } from './member.service';
+import { MemberController } from '@src/member/member.controller';
+import { MemberService } from '@src/member/member.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Member } from './entities/member.entity';
-import { MemberRepository } from './member.repository';
-import { LectureModule } from 'src/lecture/Lecture.module';
+import { Member } from '@src/member/entities/member.entity';
+import { MemberRepository } from '@src/member/member.repository';
+import { LectureModule } from '@src/lecture/Lecture.module';
 
 @Module({
   imports: [

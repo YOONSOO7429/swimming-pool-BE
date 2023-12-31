@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { MemberRepository } from './member.repository';
-import { RegistMemberDto } from './dto/registMember.dto';
-import { DeleteMemberDto } from './dto/deleteMember.dto';
+import { MemberRepository } from '@src/member/member.repository';
+import { RegistMemberDto } from '@src/member/dto/registMember.dto';
+import { DeleteMemberDto } from '@src/member/dto/deleteMember.dto';
 
 @Injectable()
 export class MemberService {

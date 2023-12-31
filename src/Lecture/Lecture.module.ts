@@ -1,12 +1,12 @@
 import { Module, forwardRef } from '@nestjs/common';
-import { LectureController } from './Lecture.controller';
-import { LectureService } from './Lecture.service';
+import { LectureController } from '@src/lecture/Lecture.controller';
+import { LectureService } from '@src/lecture/Lecture.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Lecture } from './entities/Lecture.entity';
-import { LectureRepository } from './Lecture.repository';
-import { MemberModule } from 'src/member/member.module';
-import { LessonModule } from 'src/lesson/lesson.module';
-import { CommentModule } from 'src/comment/comment.module';
+import { Lecture } from '@src/lecture/entities/Lecture.entity';
+import { LectureRepository } from '@src/lecture/Lecture.repository';
+import { MemberModule } from '@src/member/member.module';
+import { LessonModule } from '@src/lesson/lesson.module';
+import { CommentModule } from '@src/comment/comment.module';
 
 @Module({
   imports: [

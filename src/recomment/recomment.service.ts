@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { RecommentRepository } from './recomment.repository';
-import { CreateRecommentDto } from './dto/createRecomment.dto';
-import { EditRecommentDto } from './dto/editRecomment.dto';
+import { RecommentRepository } from '@src/recomment/recomment.repository';
+import { CreateRecommentDto } from '@src/recomment/dto/createRecomment.dto';
+import { EditRecommentDto } from '@src/recomment/dto/editRecomment.dto';
 
 @Injectable()
 export class RecommentService {

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { LectureRepository } from './Lecture.repository';
-import { CreateLectureDto } from './dto/createLecture.dto';
-import { EditLectureDto } from './dto/editLecture.dto';
+import { LectureRepository } from '@src/lecture/Lecture.repository';
+import { CreateLectureDto } from '@src/lecture/dto/createLecture.dto';
+import { EditLectureDto } from '@src/lecture/dto/editLecture.dto';
 
 @Injectable()
 export class LectureService {

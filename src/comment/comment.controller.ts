@@ -8,11 +8,11 @@ import {
   Put,
   Res,
 } from '@nestjs/common';
-import { CommentService } from './comment.service';
-import { CreateCommentDto } from './dto/createComment.dto';
-import { LectureService } from 'src/lecture/Lecture.service';
-import { MemberService } from 'src/member/member.service';
-import { EditCommentDto } from './dto/editComment.dto';
+import { CommentService } from '@src/comment/comment.service';
+import { CreateCommentDto } from '@src/comment/dto/createComment.dto';
+import { LectureService } from '@src/lecture/Lecture.service';
+import { MemberService } from '@src/member/member.service';
+import { EditCommentDto } from '@src/comment/dto/editComment.dto';
 
 @Controller('comment')
 export class CommentController {

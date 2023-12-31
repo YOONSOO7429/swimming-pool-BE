@@ -4,20 +4,20 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AppController } from '@src/app.controller';
+import { AppService } from '@src/app.service';
 import { JwtService } from '@nestjs/jwt';
-import { UserModule } from './user/user.module';
+import { UserModule } from '@src/user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { AuthMiddleWare } from './middleware/auth.middleware';
-import { MemberModule } from './member/member.module';
-import { LectureModule } from './lecture/Lecture.module';
-import { LessonModule } from './lesson/lesson.module';
-import { FeedbackModule } from './feedback/feedback.module';
-import { ParticipantModule } from './participant/participant.module';
-import { CommentModule } from './comment/comment.module';
-import { RecommentModule } from './recomment/recomment.module';
+import { AuthMiddleWare } from '@src/middleware/auth.middleware';
+import { MemberModule } from '@src/member/member.module';
+import { LectureModule } from '@src/lecture/Lecture.module';
+import { LessonModule } from '@src/lesson/lesson.module';
+import { FeedbackModule } from '@src/feedback/feedback.module';
+import { ParticipantModule } from '@src/participant/participant.module';
+import { CommentModule } from '@src/comment/comment.module';
+import { RecommentModule } from '@src/recomment/recomment.module';
 
 @Module({
   imports: [
@@ -33,7 +33,6 @@ import { RecommentModule } from './recomment/recomment.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      timezone: 'Asia/Seoul',
       // synchronize: true,
       synchronize: false,
     }),

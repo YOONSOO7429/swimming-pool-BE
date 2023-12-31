@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { LessonRepository } from './lesson.repository';
-import { RecordLessonDto } from './dto/recordLesson.dto';
-import { EditLessonDto } from './dto/editLesson.dto';
+import { LessonRepository } from '@src/lesson/lesson.repository';
+import { RecordLessonDto } from '@src/lesson/dto/recordLesson.dto';
+import { EditLessonDto } from '@src/lesson/dto/editLesson.dto';
 
 @Injectable()
 export class LessonService {

@@ -1,10 +1,10 @@
 import { Module, forwardRef } from '@nestjs/common';
-import { RecommentController } from './recomment.controller';
-import { RecommentService } from './recomment.service';
+import { RecommentController } from '@src/recomment/recomment.controller';
+import { RecommentService } from '@src/recomment/recomment.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Recomment } from './entities/recomment.entity';
-import { CommentModule } from 'src/comment/comment.module';
-import { RecommentRepository } from './recomment.repository';
+import { Recomment } from '@src/recomment/entities/recomment.entity';
+import { CommentModule } from '@src/comment/comment.module';
+import { RecommentRepository } from '@src/recomment/recomment.repository';
 
 @Module({
   imports: [

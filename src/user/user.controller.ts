@@ -6,9 +6,9 @@ import {
   Res,
   Delete,
 } from '@nestjs/common';
-import { UserService } from './user.service';
-import { SignUpDto } from './dto/signUp.dto';
-import { SignInDto } from './dto/signIn.dto';
+import { UserService } from '@src/user/user.service';
+import { SignUpDto } from '@src/user/dto/signUp.dto';
+import { SignInDto } from '@src/user/dto/signIn.dto';
 import * as bcrypt from 'bcrypt';
 
 @Controller('user')

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Member } from './entities/member.entity';
+import { Member } from '@src/member/entities/member.entity';
 import { Repository } from 'typeorm';
-import { RegistMemberDto } from './dto/registMember.dto';
-import { DeleteMemberDto } from './dto/deleteMember.dto';
+import { RegistMemberDto } from '@src/member/dto/registMember.dto';
+import { DeleteMemberDto } from '@src/member/dto/deleteMember.dto';
 
 @Injectable()
 export class MemberRepository {

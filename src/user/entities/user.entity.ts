@@ -1,9 +1,9 @@
-import { Lecture } from 'src/lecture/entities/Lecture.entity';
-import { Comment } from 'src/comment/entities/comment.entity';
-import { Feedback } from 'src/feedback/entities/feedback.entity';
-import { Lesson } from 'src/lesson/entities/lesson.entity';
-import { Member } from 'src/member/entities/member.entity';
-import { Participant } from 'src/participant/entities/participant.entity';
+import { Lecture } from '@src/lecture/entities/Lecture.entity';
+import { Comment } from '@src/comment/entities/comment.entity';
+import { Feedback } from '@src/feedback/entities/feedback.entity';
+import { Lesson } from '@src/lesson/entities/lesson.entity';
+import { Member } from '@src/member/entities/member.entity';
+import { Participant } from '@src/participant/entities/participant.entity';
 import {
   Column,
   CreateDateColumn,
@@ -12,7 +12,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Recomment } from 'src/recomment/entities/recomment.entity';
+import { Recomment } from '@src/recomment/entities/recomment.entity';
 
 @Entity('user')
 export class User {

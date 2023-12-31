@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Feedback } from './entities/feedback.entity';
+import { Feedback } from '@src/feedback/entities/feedback.entity';
 import { Repository } from 'typeorm';
-import { CreateFeedbackDto } from './dto/createFeedback.dto';
+import { CreateFeedbackDto } from '@src/feedback/dto/createFeedback.dto';
 
 @Injectable()
 export class FeedbackRepository {

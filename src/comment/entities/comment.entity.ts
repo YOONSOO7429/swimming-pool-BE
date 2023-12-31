@@ -1,6 +1,6 @@
-import { Lecture } from 'src/lecture/entities/Lecture.entity';
-import { Recomment } from 'src/recomment/entities/recomment.entity';
-import { User } from 'src/user/entities/user.entity';
+import { Lecture } from '@src/lecture/entities/Lecture.entity';
+import { Recomment } from '@src/recomment/entities/recomment.entity';
+import { User } from '@src/user/entities/user.entity';
 import {
   Column,
   CreateDateColumn,

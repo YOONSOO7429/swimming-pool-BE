@@ -1,6 +1,6 @@
-import { Feedback } from 'src/feedback/entities/feedback.entity';
-import { Lesson } from 'src/lesson/entities/lesson.entity';
-import { User } from 'src/user/entities/user.entity';
+import { Feedback } from '@src/feedback/entities/feedback.entity';
+import { Lesson } from '@src/lesson/entities/lesson.entity';
+import { User } from '@src/user/entities/user.entity';
 import {
   Entity,
   JoinColumn,
